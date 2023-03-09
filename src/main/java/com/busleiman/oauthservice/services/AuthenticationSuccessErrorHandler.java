@@ -24,11 +24,31 @@ public class AuthenticationSuccessErrorHandler implements AuthenticationEventPub
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         logger.info(userDetails.getUsername() + " logged");
 
+        User user = userService.findUserByUsername(authentication.getName());
 
+        if(user.getIntents() != null && user.getIntents() > 0){
+            user.setIntents(0);
+            userService.changeStateUser(user, user.getId());
+        }
     }
 
     @Override
     public void publishAuthenticationFailure(AuthenticationException e, Authentication authentication) {
         logger.info("Log in error: " + e.getMessage());
+
+        User user = userService.findUserByUsername(authentication.getName());
+
+        if(user.getIntents() ==null){
+            user.setIntents(0);
+        }
+
+        user.setIntents(user.getIntents() + 1);
+
+        if(user.getIntents() >= 3){
+            user.setEnabled(false);
+        }
+
+        userService.changeStateUser(user, user.getId());
+
     }
 }

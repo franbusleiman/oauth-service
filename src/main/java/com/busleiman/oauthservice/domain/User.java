@@ -23,7 +23,7 @@ public class User {
 
     private String email;
 
-    private int intents;
+    private Integer intents;
 
     private boolean isEnabled;
 
