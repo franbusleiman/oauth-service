@@ -15,6 +15,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import java.util.Arrays;
+import java.util.Base64;
 
 
 @Configuration
@@ -69,8 +70,8 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter jwtAccessTokenConverter =  new JwtAccessTokenConverter();
 
-        jwtAccessTokenConverter.setSigningKey("codigo_secreto");
-
+      jwtAccessTokenConverter.setSigningKey("asdfAEGVDSAkdnASBOIAW912927171Q23Q");
+        //   jwtAccessTokenConverter.setSigningKey("codigo-secreto");
         return jwtAccessTokenConverter;
     }
 }
