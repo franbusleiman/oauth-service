@@ -2,6 +2,7 @@ package com.busleiman.oauthservice.domain;
 
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
@@ -11,21 +12,18 @@ import java.util.List;
 @Setter
 public class User {
 
+
     private Long id;
-
     private String username;
-
     private String password;
-
-    private String name;
-
-    private String lastName;
-
+    private String identificationNr;
+    private LocalDate birthDate;
     private String email;
-
-    private Integer intents;
-
+    private String name;
+    private String surname;
+    private String phoneNumber;
+    private String areaPhoneNumber;
     private boolean isEnabled;
-
+    private Integer intents;
     private List<Role> roles;
 }

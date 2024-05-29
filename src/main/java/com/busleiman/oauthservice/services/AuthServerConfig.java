@@ -71,7 +71,6 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
         JwtAccessTokenConverter jwtAccessTokenConverter =  new JwtAccessTokenConverter();
 
       jwtAccessTokenConverter.setSigningKey("asdfAEGVDSAkdnASBOIAW912927171Q23Q");
-        //   jwtAccessTokenConverter.setSigningKey("codigo-secreto");
         return jwtAccessTokenConverter;
     }
 }

@@ -1,6 +1,8 @@
 package com.busleiman.oauthservice.services;
 
 import com.busleiman.oauthservice.domain.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
@@ -17,17 +19,21 @@ public class AditionalInfoToken implements TokenEnhancer {
 
     @Autowired
     UserService userService;
+    Logger logger = LoggerFactory.getLogger(AditionalInfoToken.class);
+
 
     @Override
     public OAuth2AccessToken enhance(OAuth2AccessToken oAuth2AccessToken, OAuth2Authentication oAuth2Authentication) {
         Map<String, Object> properties = new HashMap<>();
         User user = userService.findUserByUsername(oAuth2Authentication.getName());
-        properties.put("name", user.getName());
         properties.put("id", user.getId());
-        properties.put("lastName", user.getLastName());
         properties.put("email", user.getEmail());
+        properties.put("roles", user.getRoles());
 
         ((DefaultOAuth2AccessToken) oAuth2AccessToken).setAdditionalInformation(properties);
+
+        // Añadir log
+        logger.info("Token enhanced for user: {}", oAuth2Authentication.getName());
         return oAuth2AccessToken;
     }
 }
