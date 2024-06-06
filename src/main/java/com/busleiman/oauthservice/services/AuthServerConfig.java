@@ -44,7 +44,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
         clients.inMemory().withClient("android-app")
         .secret(bCryptPasswordEncoder.encode("12345"))
         .scopes("read", "write")
-        .authorizedGrantTypes("password", "refresh-token")
+        .authorizedGrantTypes("password", "refresh_token")
         .accessTokenValiditySeconds(3600)
         .refreshTokenValiditySeconds(3600);
     }
