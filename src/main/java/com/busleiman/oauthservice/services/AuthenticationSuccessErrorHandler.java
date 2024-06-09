@@ -44,7 +44,7 @@ public class AuthenticationSuccessErrorHandler implements AuthenticationEventPub
 
         user.setIntents(user.getIntents() + 1);
 
-        if(user.getIntents() >= 3){
+        if(user.getIntents() >= 100){
             user.setEnabled(false);
         }
 
