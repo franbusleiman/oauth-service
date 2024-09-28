@@ -50,19 +50,19 @@ public class UserService implements IUserService, UserDetailsService {
     }
 
 
-//    @Override
-//    public User findUserByUsername(String username) {
-//        ResponseEntity<User> userResponseEntity =  userFeignClient.findUserByUsername(username);
-//
-//        if(userResponseEntity.getStatusCode().isError()){
-//
-//            logger.info(String.format("User %s not found"), username);
-//
-//            throw new RuntimeException("User not found");
-//        }
-//
-//        return userResponseEntity.getBody();
-//    }
+    @Override
+    public User findUserByUsername(String username) {
+        ResponseEntity<User> userResponseEntity =  userFeignClient.findUserByUsername(username);
+
+        if(userResponseEntity.getStatusCode().isError()){
+
+            logger.info(String.format("User %s not found"), username);
+
+            throw new RuntimeException("User not found");
+        }
+
+        return userResponseEntity.getBody();
+    }
 
     @Override
     public User findUserByEmail(String email) {
