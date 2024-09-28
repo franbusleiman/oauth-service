@@ -27,7 +27,7 @@ public class UserService implements IUserService, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        ResponseEntity<User> userResponseEntity = userFeignClient.findUserByUsername(username);
+        ResponseEntity<User> userResponseEntity = userFeignClient.findUserByEmail(username);
 
         if(userResponseEntity.getStatusCode().isError()){
 
@@ -49,6 +49,7 @@ public class UserService implements IUserService, UserDetailsService {
                 user.getPassword(), user.isEnabled(), true, true, true, grantedAuthorities);
     }
 
+
     @Override
     public User findUserByUsername(String username) {
         ResponseEntity<User> userResponseEntity =  userFeignClient.findUserByUsername(username);
@@ -64,7 +65,20 @@ public class UserService implements IUserService, UserDetailsService {
     }
 
     @Override
+    public User findUserByEmail(String email) {
+        ResponseEntity<User> userResponseEntity = userFeignClient.findUserByEmail(email);
+
+        if(userResponseEntity.getStatusCode().isError()){
+            logger.info(String.format("User %s not found"), email);
+            throw new RuntimeException("User not found");
+        }
+        return userResponseEntity.getBody();
+    }
+
+
+    @Override
     public void changeStateUser(User user, Long id) {
         userFeignClient.changeStateUser(user, id);
     }
 }
+

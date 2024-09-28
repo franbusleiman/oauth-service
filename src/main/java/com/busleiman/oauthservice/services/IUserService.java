@@ -6,5 +6,7 @@ public interface IUserService {
 
     User findUserByUsername(String username);
 
+    User findUserByEmail(String email);
+
     void changeStateUser(User user, Long id);
 }

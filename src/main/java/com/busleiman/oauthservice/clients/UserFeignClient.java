@@ -14,6 +14,8 @@ public interface UserFeignClient{
     @RequestMapping(method = RequestMethod.GET, value = "/users/username/{username}")
     ResponseEntity<User> findUserByUsername(@PathVariable("username") String username);
 
+    @RequestMapping(method = RequestMethod.GET, value = "/users/email/{email}")
+    ResponseEntity<User> findUserByEmail(@PathVariable("email") String email);
     @RequestMapping(method = RequestMethod.PUT, value = "/users/{id}")
      User changeStateUser(@RequestBody User user, @PathVariable("id")Long id);
 }
