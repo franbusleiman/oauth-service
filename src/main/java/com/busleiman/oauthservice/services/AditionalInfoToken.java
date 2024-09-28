@@ -30,7 +30,7 @@ public class AditionalInfoToken implements TokenEnhancer {
         properties.put("email", user.getEmail());
         properties.put("roles", user.getRoles());
 
-        System.out.println(oAuth2Authentication.getName());
+        System.out.println("INFORMACION ====================" + oAuth2Authentication.getName());
 
         ((DefaultOAuth2AccessToken) oAuth2AccessToken).setAdditionalInformation(properties);
 
