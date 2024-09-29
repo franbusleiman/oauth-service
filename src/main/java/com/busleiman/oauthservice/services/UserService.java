@@ -25,20 +25,20 @@ public class UserService implements IUserService, UserDetailsService {
     UserFeignClient userFeignClient;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        ResponseEntity<User> userResponseEntity = userFeignClient.findUserByEmail(username);
+        ResponseEntity<User> userResponseEntity = userFeignClient.findUserByEmail(email);
 
         if(userResponseEntity.getStatusCode().isError()){
 
-            logger.info(String.format("User %s not found"), username);
+            logger.info(String.format("User %s not found"), email);
 
             throw new RuntimeException("User not found");
         }
 
         User user = userResponseEntity.getBody();
 
-        logger.info(String.format("User found"), username);
+        logger.info(String.format("User found"), email);
 
 
         List<GrantedAuthority> grantedAuthorities = user.getRoles().stream()
