@@ -27,7 +27,7 @@ public class UserService implements IUserService, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        ResponseEntity<User> userResponseEntity = userFeignClient.findUserByEmail(email);
+        ResponseEntity<User> userResponseEntity = userFeignClient.findUserByUsername(email);
 
         if(userResponseEntity.getStatusCode().isError()){
 
