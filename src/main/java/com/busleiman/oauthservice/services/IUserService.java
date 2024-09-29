@@ -4,9 +4,11 @@ import com.busleiman.oauthservice.domain.User;
 
 public interface IUserService {
 
+    User findUserByEmail(String email);
+
+
     User findUserByUsername(String username);
 
-    User findUserByEmail(String email);
 
     void changeStateUser(User user, Long id);
 }
