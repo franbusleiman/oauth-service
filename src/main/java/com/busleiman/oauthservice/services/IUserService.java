@@ -7,7 +7,7 @@ public interface IUserService {
     User findUserByEmail(String email);
 
 
-    User findUserByUsername(String username);
+//    User findUserByUsername(String username);
 
 
     void changeStateUser(User user, Long id);
