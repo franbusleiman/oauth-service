@@ -27,7 +27,7 @@ public class UserService implements IUserService, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        ResponseEntity<User> userResponseEntity = userFeignClient.findUserByUsername(username);
+        ResponseEntity<User> userResponseEntity = userFeignClient.findUserByEmail(username);
 
         if(userResponseEntity.getStatusCode().isError()){
 
@@ -45,7 +45,7 @@ public class UserService implements IUserService, UserDetailsService {
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());
 
-        return new org.springframework.security.core.userdetails.User(user.getUsername(),
+        return new org.springframework.security.core.userdetails.User(user.getEmail(),
                 user.getPassword(), user.isEnabled(), true, true, true, grantedAuthorities);
     }
 
