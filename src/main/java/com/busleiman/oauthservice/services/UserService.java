@@ -50,6 +50,7 @@ public class UserService implements IUserService, UserDetailsService {
     }
 
 
+//No esta en uso desde que cambiamos el login con email, lo dejo por si hacemos el login por ambos
 //    @Override
 //    public User findUserByUsername(String username) {
 //        ResponseEntity<User> userResponseEntity =  userFeignClient.findUserByUsername(username);
