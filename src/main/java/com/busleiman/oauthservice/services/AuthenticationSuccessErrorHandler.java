@@ -34,8 +34,8 @@ public class AuthenticationSuccessErrorHandler implements AuthenticationEventPub
 
     @Override
     public void publishAuthenticationFailure(AuthenticationException e, Authentication authentication) {
-        logger.info("Log in error: " + e.getMessage());
 
+/*
         User user = userService.findUserByEmail(authentication.getName());
 
         if(user.getIntents() ==null){
@@ -48,7 +48,6 @@ public class AuthenticationSuccessErrorHandler implements AuthenticationEventPub
             user.setEnabled(false);
         }
 
-        userService.changeStateUser(user, user.getId());
-
+        userService.changeStateUser(user, user.getId());*/
     }
 }

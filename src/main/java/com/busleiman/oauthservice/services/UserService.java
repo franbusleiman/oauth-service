@@ -29,6 +29,7 @@ public class UserService implements IUserService, UserDetailsService {
 
         ResponseEntity<User> userResponseEntity = userFeignClient.findUserByEmail(email);
 
+
         if(userResponseEntity.getStatusCode().isError()){
 
             logger.info(String.format("User %s not found"), email);
@@ -49,21 +50,6 @@ public class UserService implements IUserService, UserDetailsService {
                 user.getPassword(), user.isEnabled(), true, true, true, grantedAuthorities);
     }
 
-
-//No esta en uso desde que cambiamos el login con email, lo dejo por si hacemos el login por ambos
-//    @Override
-//    public User findUserByUsername(String username) {
-//        ResponseEntity<User> userResponseEntity =  userFeignClient.findUserByUsername(username);
-//
-//        if(userResponseEntity.getStatusCode().isError()){
-//
-//            logger.info(String.format("User %s not found"), username);
-//
-//            throw new RuntimeException("User not found");
-//        }
-//
-//        return userResponseEntity.getBody();
-//    }
 
     @Override
     public User findUserByEmail(String email) {
